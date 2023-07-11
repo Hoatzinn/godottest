@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://l6er1lb4bu0s"]
+
+[ext_resource type="PackedScene" uid="uid://ckw2ijlt7chnj" path="res://ball.tscn" id="1_6obq7"]
+
+[node name="MainScene" type="Node2D"]
+
+[node name="Label" type="Label" parent="."]
+offset_left = 569.0
+offset_top = 292.0
+offset_right = 609.0
+offset_bottom = 315.0
+text = "cock"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(225, 99)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2(-52, 68)
+polygon = PackedVector2Array(-2, -1, 177, 213, 346, 340, 553, 249, 681, 98, 940, 133, 855, 342, 558, 483, 148, 428, 74, 277, -32, 192, -28, 59)
+
+[node name="Polygon2D" type="Polygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(-75, 94, -54, 67, 121, 277, 291, 407, 502, 318, 629, 164, 889, 200, 802, 410, 511, 554, 95, 498, 24, 343, -85, 259, -79, 121)
+
+[node name="Ball" parent="." instance=ExtResource("1_6obq7")]
+position = Vector2(398, 97)
