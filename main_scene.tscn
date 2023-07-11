@@ -4,13 +4,6 @@
 
 [node name="MainScene" type="Node2D"]
 
-[node name="Label" type="Label" parent="."]
-offset_left = 569.0
-offset_top = 292.0
-offset_right = 609.0
-offset_bottom = 315.0
-text = "cock"
-
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(225, 99)
 
