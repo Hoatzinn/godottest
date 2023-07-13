@@ -16,3 +16,16 @@ polygon = PackedVector2Array(-75, 94, -54, 67, 121, 277, 291, 407, 502, 318, 629
 
 [node name="Ball" parent="." instance=ExtResource("1_6obq7")]
 position = Vector2(467, -432)
+rotation = -0.783918
+
+[node name="Ball2" parent="." instance=ExtResource("1_6obq7")]
+position = Vector2(201, -300)
+rotation = -0.925142
+
+[node name="Ball3" parent="." instance=ExtResource("1_6obq7")]
+position = Vector2(801, -296)
+rotation = 0.787679
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(614, 69)
+zoom = Vector2(0.385, 0.385)
