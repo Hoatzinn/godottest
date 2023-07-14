@@ -15,8 +15,9 @@ func _ready():
 func _physics_process(delta):
 	if(mouseinme and Input.is_action_pressed("Mouse_Action")):
 		force = get_global_mouse_position() - global_position
-		print_debug(force.normalized())
-		apply_central_impulse(force.normalized()*200)
+		apply_central_impulse(force.normalized()*20)
+	if(position.y>1000):
+		apply_central_impulse(Vector2.UP*3000)
 
 func _on_mouse_entered():
 	mouseinme = true

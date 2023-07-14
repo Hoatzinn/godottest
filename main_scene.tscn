@@ -19,7 +19,7 @@ position = Vector2(467, -432)
 rotation = -0.783918
 
 [node name="Ball2" parent="." instance=ExtResource("1_6obq7")]
-position = Vector2(201, -300)
+position = Vector2(-140, -201)
 rotation = -0.925142
 
 [node name="Ball3" parent="." instance=ExtResource("1_6obq7")]
