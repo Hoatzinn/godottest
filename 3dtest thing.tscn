@@ -1,0 +1,52 @@
+[gd_scene load_steps=6 format=3 uid="uid://cphq2nojrela3"]
+
+[ext_resource type="PackedScene" uid="uid://74u7g4u4qsky" path="res://Player.tscn" id="1_v1qgb"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ppnp3"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_51qut"]
+sky_material = SubResource("ProceduralSkyMaterial_ppnp3")
+
+[sub_resource type="Environment" id="Environment_xgc7x"]
+background_mode = 2
+sky = SubResource("Sky_51qut")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q5vec"]
+albedo_color = Color(0.443137, 0.596078, 1, 1)
+
+[node name="3dtest thing" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_xgc7x")
+
+[node name="Player" parent="." instance=ExtResource("1_v1qgb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.71045, 0.616802, 1.26245)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+use_collision = true
+size = Vector3(41.8544, 1, 37.1776)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.9667, 6.2521, 0)
+use_collision = true
+size = Vector3(1.00042, 11.5554, 37.1776)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.8077, 2, 0)
+material_override = SubResource("StandardMaterial3D_q5vec")
+use_collision = true
+size = Vector3(3, 3, 8)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="CSGBox3D3"]
+transform = Transform3D(1, 0, 0, 0, 0.853769, -0.520652, 0, 0.520652, 0.853769, -2.37662, 5.48611, -11.3105)
+material_override = SubResource("StandardMaterial3D_q5vec")
+use_collision = true
+size = Vector3(3, 3, 8)
