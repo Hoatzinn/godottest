@@ -30,6 +30,18 @@ func _process(delta):
 	
 	move_and_slide() # start moving
 	
+	# button code
+	if Input.is_action_just_pressed("Mouse_Action"):
+		if raycast.get_collider() != null:
+			var regex = RegEx.new()
+			regex.compile("button.*")
+			if regex.search(raycast.get_collider().name):
+				if raycast.get_collider().button_activated:
+					raycast.get_collider().button_activated = false
+				else:
+					raycast.get_collider().button_activated = true
+				
+	
 	# fullscreen and invisible mouse/cursor
 	if Input.is_action_just_pressed("fullscreen"):
 		
@@ -47,7 +59,4 @@ func _input(event):
 		rotate_y(-event.relative.x*look_sensitivity) # rotate body
 		camera.rotate_x(-event.relative.y*look_sensitivity) # rotate camera up and down (no headshaking)
 		camera.rotation.x = clamp(camera.rotation.x, -PI/2, PI/2) # no moving in the wrong way sir
-	if event is InputEventMouseButton:
-		if raycast.get_collider() != null:
-			if raycast.get_collider().visible:
-				raycast.get_collider().visible = false
+			
