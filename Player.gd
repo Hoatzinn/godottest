@@ -7,6 +7,7 @@ extends CharacterBody3D
 var gravity = 9.81
 var velocity_y = 0
 @onready var camera:Camera3D = $Camera3D
+@onready var raycast:RayCast3D = $Camera3D/RayCast3D
 
 func _process(delta):
 	
@@ -46,4 +47,7 @@ func _input(event):
 		rotate_y(-event.relative.x*look_sensitivity) # rotate body
 		camera.rotate_x(-event.relative.y*look_sensitivity) # rotate camera up and down (no headshaking)
 		camera.rotation.x = clamp(camera.rotation.x, -PI/2, PI/2) # no moving in the wrong way sir
-		
+	if event is InputEventMouseButton:
+		if raycast.get_collider() != null:
+			if raycast.get_collider().visible:
+				raycast.get_collider().visible = false
