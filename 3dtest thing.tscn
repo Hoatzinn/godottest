@@ -1,7 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://cphq2nojrela3"]
+[gd_scene load_steps=11 format=3 uid="uid://cphq2nojrela3"]
 
 [ext_resource type="PackedScene" uid="uid://74u7g4u4qsky" path="res://Player.tscn" id="1_v1qgb"]
+[ext_resource type="Texture2D" uid="uid://cq1jmw54npj42" path="res://Textures/rocky_trail_02_diff_1k.png" id="2_ijnfi"]
 [ext_resource type="PackedScene" uid="uid://bj4do7w3p1ful" path="res://button.tscn" id="2_mbvt1"]
+[ext_resource type="Texture2D" uid="uid://dfmdrj7jue7yb" path="res://Textures/rocky_trail_02_nor_gl_1k.png" id="3_6hdm7"]
+[ext_resource type="Texture2D" uid="uid://bosfx8q02y0bp" path="res://Textures/rocky_trail_02_rough_1k.png" id="4_nfqjy"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q5vec"]
 albedo_color = Color(0.443137, 0.596078, 1, 1)
@@ -19,6 +22,13 @@ sky = SubResource("Sky_51qut")
 tonemap_mode = 2
 glow_enabled = true
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xex81"]
+albedo_texture = ExtResource("2_ijnfi")
+roughness_texture = ExtResource("4_nfqjy")
+normal_enabled = true
+normal_texture = ExtResource("3_6hdm7")
+uv1_scale = Vector3(20, 20, 20)
+
 [node name="3dtest thing" type="Node3D"]
 
 [node name="CSGBox3D4" type="CSGBox3D" parent="."]
@@ -28,23 +38,40 @@ use_collision = true
 size = Vector3(3, 3, 8)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866026, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.75, -0.43301, 0, 0, 0)
 shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_xgc7x")
 
 [node name="Player" parent="." instance=ExtResource("1_v1qgb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.71045, 0.616802, 1.26245)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.71045, 0.535424, 1.26245)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.4359, 0, 0)
+material_override = SubResource("StandardMaterial3D_xex81")
 use_collision = true
-size = Vector3(41.8544, 1, 37.1776)
+size = Vector3(130, 1, 130)
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.9667, 6.2521, 0)
 use_collision = true
-size = Vector3(1.00042, 11.5554, 37.1776)
+size = Vector3(1.00042, 11.5554, 129.589)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGBox3D2"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 64.5906, -0.0226517, 64.4717)
+use_collision = true
+size = Vector3(1.00042, 11.5554, 129.589)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGBox3D2/CSGBox3D2"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 64.5906, -0.0226517, 64.4717)
+use_collision = true
+size = Vector3(1.00042, 11.5554, 129.589)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGBox3D2/CSGBox3D2/CSGBox3D2"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 64.5906, -0.0226517, 64.4717)
+use_collision = true
+size = Vector3(1.00042, 11.5554, 129.589)
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.8077, 2, 0)
@@ -52,5 +79,8 @@ material_override = SubResource("StandardMaterial3D_q5vec")
 use_collision = true
 size = Vector3(3, 3, 8)
 
+[node name="button2" parent="." instance=ExtResource("2_mbvt1")]
+transform = Transform3D(-8.74228e-08, 2, 0, -2, -8.74228e-08, 0, 0, 0, 2, -18.5566, 10.1437, 10.5818)
+
 [node name="button" parent="." instance=ExtResource("2_mbvt1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.485279, 0.999887, -1.0314)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.487697, 0.999888, -1.02063)

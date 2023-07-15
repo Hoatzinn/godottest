@@ -4,8 +4,10 @@ extends CharacterBody3D
 @export var inairspeed = 15
 @export var jump_velocity = 8
 @export var look_sensitivity =  0.0015
+@export var is_sneaking = false
 var gravity = 9.81
 var velocity_y = 0
+var speedonground = Vector3.ZERO
 @onready var camera:Camera3D = $Camera3D
 @onready var raycast:RayCast3D = $Camera3D/RayCast3D
 
@@ -16,12 +18,28 @@ func _process(delta):
 	
 	# jumping
 	if is_on_floor():
-		velocity = velocity.lerp((horizontal_velocity.x * global_transform.basis.x + horizontal_velocity.y * global_transform.basis.z)*speed, delta*8) # lerp smoothes movement
+		
+		if Input.is_action_pressed("sneak_and_slide"):
+			is_sneaking = true
+			velocity.z = velocity.z * 0.996
+			velocity.x = velocity.x * 0.996
+		else:
+			is_sneaking = false
+			velocity = velocity.lerp((horizontal_velocity.x * global_transform.basis.x + horizontal_velocity.y * global_transform.basis.z)*speed, delta*8) # lerp smoothes movement
+		
+		
 		velocity_y = 0
+		
 		if Input.is_action_just_pressed("jump"):
+			if Input.is_action_pressed("sneak_and_slide"):
+				speedonground = velocity
 			velocity_y = jump_velocity
 	else:
-		velocity = velocity.lerp((horizontal_velocity.x * global_transform.basis.x + horizontal_velocity.y * global_transform.basis.z)*inairspeed, delta*8) # lerp smoothes movement
+		if not is_sneaking:
+			velocity = velocity.lerp((horizontal_velocity.x * global_transform.basis.x + horizontal_velocity.y * global_transform.basis.z)*inairspeed, delta*8) # lerp smoothes movement
+		else:
+			velocity = velocity.lerp((horizontal_velocity.x * global_transform.basis.x + horizontal_velocity.y * global_transform.basis.z)*inairspeed*0.1, delta*2) + speedonground*0.02
+		
 		if not position.y < -3:
 			velocity_y -= gravity * delta # falling
 		else: 
@@ -29,6 +47,11 @@ func _process(delta):
 	velocity.y = velocity_y # update y
 	
 	move_and_slide() # start moving
+	
+	if is_sneaking and camera.position.y >= 1.0:
+		camera.position.y -= 0.1
+	elif (not is_sneaking) and camera.position.y <= 1.537:
+		camera.position.y += 0.1
 	
 	# button code
 	if Input.is_action_just_pressed("Mouse_Action"):
