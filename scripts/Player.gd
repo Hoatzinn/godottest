@@ -2,10 +2,10 @@ extends CharacterBody3D
 
 @export var speed = 4
 @export var inairspeed = 6
-@export var jump_velocity = 8
+@export var jump_velocity = 5
 @export var look_sensitivity =  0.0015
 @export var is_sneaking = false
-var gravity = 9.81
+var gravity = 9.81+2
 var velocity_y = 0
 var speedonground = Vector3.ZERO
 @onready var camera:Camera3D = $Camera3D

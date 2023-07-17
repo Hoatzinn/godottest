@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://l6er1lb4bu0s"]
 
-[ext_resource type="PackedScene" uid="uid://ckw2ijlt7chnj" path="res://ball.tscn" id="1_6obq7"]
+[ext_resource type="PackedScene" uid="uid://djtkiyyut12ei" path="res://objects/ball.tscn" id="1_kee1v"]
 
 [node name="MainScene" type="Node2D"]
 
@@ -14,18 +14,15 @@ polygon = PackedVector2Array(-2, -1, 177, 213, 346, 340, 553, 249, 681, 98, 940,
 [node name="Polygon2D" type="Polygon2D" parent="Weird mesh"]
 polygon = PackedVector2Array(-75, 94, -54, 67, 121, 277, 291, 407, 502, 318, 629, 164, 889, 200, 802, 410, 511, 554, 95, 498, 24, 343, -85, 259, -79, 121)
 
-[node name="Ball" parent="." instance=ExtResource("1_6obq7")]
-position = Vector2(467, -432)
-rotation = -0.783918
-
-[node name="Ball2" parent="." instance=ExtResource("1_6obq7")]
-position = Vector2(-140, -201)
-rotation = -0.925142
-
-[node name="Ball3" parent="." instance=ExtResource("1_6obq7")]
-position = Vector2(801, -296)
-rotation = 0.787679
-
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(614, 69)
 zoom = Vector2(0.385, 0.385)
+
+[node name="Ball" parent="." instance=ExtResource("1_kee1v")]
+position = Vector2(413, -43)
+
+[node name="Ball2" parent="." instance=ExtResource("1_kee1v")]
+position = Vector2(608, -526)
+
+[node name="Ball3" parent="." instance=ExtResource("1_kee1v")]
+position = Vector2(688, -83)
