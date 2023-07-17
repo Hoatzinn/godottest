@@ -32,7 +32,7 @@ uv1_scale = Vector3(20, 20, 20)
 [node name="3dtest thing" type="Node3D"]
 
 [node name="CSGBox3D4" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.853769, -0.520652, 0, 0.520652, 0.853769, -18.1843, 7.48611, -11.3105)
+transform = Transform3D(1, 0, 0, 0, 0.853769, -0.520652, 0, 0.520652, 0.853769, -19.3787, 7.48611, -11.3105)
 material_override = SubResource("StandardMaterial3D_q5vec")
 use_collision = true
 size = Vector3(3, 3, 8)
@@ -54,7 +54,7 @@ use_collision = true
 size = Vector3(130, 1, 130)
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.9667, 6.2521, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.9228, 6.2521, 0)
 use_collision = true
 size = Vector3(1.00042, 11.5554, 129.589)
 
@@ -63,24 +63,24 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 64.590
 use_collision = true
 size = Vector3(1.00042, 11.5554, 129.589)
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="CSGBox3D2/CSGBox3D2"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 64.5906, -0.0226517, 64.4717)
+[node name="CSGBox3D3" type="CSGBox3D" parent="CSGBox3D2"]
+transform = Transform3D(-1, 7.45058e-09, -8.74228e-08, 7.45058e-09, 1, 0, 8.74228e-08, 0, -1, 129.062, -0.0453024, -0.118896)
 use_collision = true
 size = Vector3(1.00042, 11.5554, 129.589)
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="CSGBox3D2/CSGBox3D2/CSGBox3D2"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 64.5906, -0.0226517, 64.4717)
+[node name="CSGBox3D5" type="CSGBox3D" parent="CSGBox3D2"]
+transform = Transform3D(1.31134e-07, 1.49012e-08, -1, -8.88178e-16, 1, 1.49012e-08, 1, 0, 1.31134e-07, 64.4717, -0.0679536, -64.5906)
 use_collision = true
 size = Vector3(1.00042, 11.5554, 129.589)
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.8077, 2, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.0445, 2, 0)
 material_override = SubResource("StandardMaterial3D_q5vec")
 use_collision = true
 size = Vector3(3, 3, 8)
 
 [node name="button2" parent="." instance=ExtResource("2_mbvt1")]
-transform = Transform3D(-8.74228e-08, 2, 0, -2, -8.74228e-08, 0, 0, 0, 2, -18.5566, 10.1437, 10.5818)
+transform = Transform3D(-8.74228e-08, 2, 0, -2, -8.74228e-08, 0, 0, 0, 2, -19.4838, 10.1437, 10.5818)
 
 [node name="button" parent="." instance=ExtResource("2_mbvt1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.487697, 0.999888, -1.02063)
