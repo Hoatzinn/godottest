@@ -38,7 +38,8 @@ func _process(delta):
 		if not is_sneaking:
 			velocity = velocity.lerp((horizontal_velocity.x * global_transform.basis.x + horizontal_velocity.y * global_transform.basis.z)*inairspeed, delta*5) # lerp smoothes movement
 		else:
-			velocity = velocity.lerp((horizontal_velocity.x * global_transform.basis.x + horizontal_velocity.y * global_transform.basis.z)*inairspeed, delta*10)+ speedonground*0.05
+			#velocity = velocity.lerp((horizontal_velocity.x * global_transform.basis.x + horizontal_velocity.y * global_transform.basis.z)*inairspeed, delta*10)#t + camera.global_transform.basis.z.normalized()*speedonground
+			is_sneaking=false
 		
 		if not position.y < -3:
 			velocity_y -= gravity * delta # falling

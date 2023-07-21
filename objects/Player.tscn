@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://c5x86kdm58xdn"]
+[gd_scene load_steps=6 format=3 uid="uid://c5x86kdm58xdn"]
 
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_87nff"]
-[ext_resource type="Texture2D" uid="uid://c8dsuwmkyuf4f" path="res://Textures/crosshairs/000.png" id="2_t4j2q"]
+[ext_resource type="Texture2D" uid="uid://cmlcc0c8nwb1y" path="res://Textures/crosshairs/crosshair.png" id="2_3oqyj"]
+[ext_resource type="Texture2D" uid="uid://c8dsuwmkyuf4f" path="res://Textures/crosshairs/000.png" id="2_12s5n"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_hb565"]
 
@@ -34,12 +35,21 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="TextureRect" type="TextureRect" parent="Camera3D/Control"]
+visible = false
 layout_mode = 0
-offset_left = -32.0
-offset_top = -32.0
-offset_right = 32.0
-offset_bottom = 32.0
-texture = ExtResource("2_t4j2q")
+offset_left = -31.0
+offset_top = -31.0
+offset_right = 33.0
+offset_bottom = 33.0
+pivot_offset = Vector2(1310, 56)
+texture = ExtResource("2_12s5n")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Crosshair" type="Sprite2D" parent="Camera3D/Control"]
+position = Vector2(1, 1)
+texture = ExtResource("2_3oqyj")
+hframes = 5
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
