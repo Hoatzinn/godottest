@@ -73,11 +73,6 @@ size = Vector3(1.00042, 11.5554, 129.589)
 
 [node name="Player" parent="." instance=ExtResource("4_jp0j8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75836, 0.500001, 13.3079)
-speed = 4
-inairspeed = 6
-jump_velocity = 7
-look_sensitivity = 0.0015
-is_sneaking = false
 
 [node name="button" parent="." instance=ExtResource("5_l0ufp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.07757, 1.41383, 13.6543)

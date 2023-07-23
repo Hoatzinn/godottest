@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://c5x86kdm58xdn"]
+[gd_scene load_steps=7 format=3 uid="uid://c5x86kdm58xdn"]
 
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_87nff"]
 [ext_resource type="Texture2D" uid="uid://cmlcc0c8nwb1y" path="res://Textures/crosshairs/crosshair.png" id="2_3oqyj"]
 [ext_resource type="Texture2D" uid="uid://c8dsuwmkyuf4f" path="res://Textures/crosshairs/000.png" id="2_12s5n"]
+[ext_resource type="PackedScene" uid="uid://cs0vk8nu1glr6" path="res://Textures/axe handle/axe.glb" id="4_6tg2s"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_hb565"]
 
@@ -50,6 +51,9 @@ stretch_mode = 1
 position = Vector2(1, 1)
 texture = ExtResource("2_3oqyj")
 hframes = 5
+
+[node name="axe" parent="Camera3D" instance=ExtResource("4_6tg2s")]
+transform = Transform3D(-9.48823e-09, -0.217065, 0, 0.125371, -5.48014e-09, -0.177199, 0.177199, -7.74562e-09, 0.125371, 0.519933, -0.515013, -0.0756542)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
