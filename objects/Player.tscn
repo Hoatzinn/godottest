@@ -54,6 +54,7 @@ hframes = 5
 
 [node name="axe" parent="Camera3D" instance=ExtResource("4_6tg2s")]
 transform = Transform3D(-9.48823e-09, -0.217065, 0, 0.125371, -5.48014e-09, -0.177199, 0.177199, -7.74562e-09, 0.125371, 0.519933, -0.515013, -0.0756542)
+visible = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

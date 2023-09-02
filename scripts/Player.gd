@@ -9,7 +9,7 @@ const MAX_AIR_SNEAK_VEL = 20
 const DASH_GRAVITY = 2000
 const SP_JUMP_STR = 17
 var super_jump = false
-var gravity = 9.81+2
+var gravity = 9.81+6
 var velocity_y = 0
 var speedonground = Vector3.ZERO
 @onready var camera:Camera3D = $Camera3D
@@ -33,6 +33,7 @@ func _process(delta):
 			is_sneaking = true
 			velocity.z = velocity.z * 0.996
 			velocity.x = velocity.x * 0.996
+			velocity = velocity.length()*-global_transform.basis.z
 			if Input.is_action_just_pressed("jump"):
 				velocity.z = velocity.z * 1.2
 				velocity.x = velocity.x * 1.2
@@ -96,7 +97,7 @@ func _process(delta):
 					raycast.get_collider().button_activated = true
 	elif Input.is_action_pressed("Mouse_Action"):
 		axe_bob += delta*20
-		axe.rotate(Vector3(sin(axe_bob), 0, 0).normalized(), -0.1)
+		axe.rotate(Vector3(sin(axe_bob), 0 , 0).normalized(), -0.1)
 	else:
 		axe.rotation = axe_def_rot
 		axe_bob = 0
