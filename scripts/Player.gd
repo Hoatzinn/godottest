@@ -2,13 +2,10 @@ extends CharacterBody3D
 
 @export var speed = 4
 @export var inairspeed = 6
-@export var jump_velocity = 7
+@export var jump_velocity = 14
 @export var look_sensitivity = 0.0015
 var is_sneaking = false
 const MAX_AIR_SNEAK_VEL = 20
-const DASH_GRAVITY = 2000
-const SP_JUMP_STR = 17
-var super_jump = false
 @export var gravity = 9.81+6
 var velocity_y = 0
 var speedonground = Vector3.ZERO
@@ -34,12 +31,7 @@ func _process(delta):
 			velocity.z = velocity.z * 0.995
 			velocity.x = velocity.x * 0.995
 			velocity = velocity.length()*-global_transform.basis.z
-			if Input.is_action_just_pressed("jump"):
-				velocity.z = velocity.z * 1.2
-				velocity.x = velocity.x * 1.2
-				super_jump = true
 		else:
-			super_jump = false
 			is_sneaking = false
 			velocity = velocity.lerp((horizontal_velocity.x * global_transform.basis.x + horizontal_velocity.y * global_transform.basis.z)*speed, delta*8) # lerp smoothes movement
 		
@@ -47,33 +39,15 @@ func _process(delta):
 		velocity_y = 0
 		
 		if Input.is_action_just_pressed("jump"):
-			if not super_jump:
-				velocity_y = jump_velocity
-			else:
-				velocity_y = SP_JUMP_STR
+			velocity_y = jump_velocity
 	else:
 		is_sneaking=false
-		if not super_jump:
-			velocity = velocity.lerp((horizontal_velocity.x * global_transform.basis.x + horizontal_velocity.y * global_transform.basis.z)*inairspeed, delta*5) # lerp smoothes movement
-			
-			# dashing
-			if Input.is_action_pressed("sneak_and_slide") and not super_jump:
-				if sqrt(pow(velocity.abs().x,2) + pow(velocity.abs().z,2)) < MAX_AIR_SNEAK_VEL:
-					velocity.z = velocity.z * 1.05
-					velocity.x = velocity.x * 1.05 
-				velocity_y = -DASH_GRAVITY*delta
-		else:
-			#velocity = velocity.lerp((horizontal_velocity.x * global_transform.basis.x + horizontal_velocity.y * global_transform.basis.z)*inairspeed, delta*0)
-			pass
+		velocity = velocity.lerp((horizontal_velocity.x * global_transform.basis.x + horizontal_velocity.y * global_transform.basis.z)*inairspeed, delta*5) # lerp smoothes movement
 		
 		if not position.y < -3:
-			if not super_jump:
-				velocity_y -= gravity * delta # falling
-			else:
-				velocity_y -= 40 * delta
+			velocity_y -= 40 * delta
 		else: 
 			speedonground = Vector3.ZERO
-			super_jump= false
 			velocity_y = 40
 	velocity.y = velocity_y # update y
 	
