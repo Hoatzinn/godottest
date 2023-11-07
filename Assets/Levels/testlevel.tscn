@@ -1,0 +1,101 @@
+[gd_scene load_steps=12 format=3 uid="uid://cphq2nojrela3"]
+
+[ext_resource type="Texture2D" uid="uid://cq1jmw54npj42" path="res://Assets/Objects/placeholder textures/rocky_trail_02_diff_1k.png" id="1_17bxj"]
+[ext_resource type="Texture2D" uid="uid://dfmdrj7jue7yb" path="res://Assets/Objects/placeholder textures/rocky_trail_02_nor_gl_1k.png" id="2_c72hn"]
+[ext_resource type="Texture2D" uid="uid://bosfx8q02y0bp" path="res://Assets/Objects/placeholder textures/rocky_trail_02_rough_1k.png" id="3_0rshv"]
+[ext_resource type="PackedScene" uid="uid://c5x86kdm58xdn" path="res://Assets/Player/Player.tscn" id="4_nhk2f"]
+[ext_resource type="PackedScene" uid="uid://dmut347b7asdr" path="res://Assets/Objects/Button/button.tscn" id="5_mr45h"]
+[ext_resource type="PackedScene" uid="uid://crqyj716u6oh8" path="res://Assets/Objects/Creepy enemy/creepy_enemy.glb" id="6_jtkml"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_babpq"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_trhxf"]
+sky_material = SubResource("ProceduralSkyMaterial_babpq")
+
+[sub_resource type="Environment" id="Environment_s4rii"]
+background_mode = 2
+sky = SubResource("Sky_trhxf")
+tonemap_mode = 2
+sdfgi_use_occlusion = true
+glow_enabled = true
+volumetric_fog_detail_spread = 6.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q5vec"]
+albedo_color = Color(0.443137, 0.596078, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xex81"]
+albedo_texture = ExtResource("1_17bxj")
+roughness_texture = ExtResource("3_0rshv")
+normal_enabled = true
+normal_texture = ExtResource("2_c72hn")
+uv1_scale = Vector3(20, 20, 20)
+
+[node name="TestLevel" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.890074, -0.409131, 0.200948, 0.0966186, 0.261491, 0.960358, -0.445458, 0.874205, -0.193217, 0.426596, 11.5766, -0.447323)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_s4rii")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.853769, -0.520652, 0, 0.520652, 0.853769, -19.3787, 7.48611, -11.3105)
+material_override = SubResource("StandardMaterial3D_q5vec")
+use_collision = true
+size = Vector3(3, 1.83785, 8)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.4359, 0, 0)
+material_override = SubResource("StandardMaterial3D_xex81")
+use_collision = true
+size = Vector3(130, 1, 130)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.9228, 6.2521, 0)
+use_collision = true
+size = Vector3(1.00042, 11.5554, 129.589)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGBox3D2"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 64.5906, -0.0226517, 64.4717)
+use_collision = true
+size = Vector3(1.00042, 11.5554, 129.589)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="CSGBox3D2"]
+transform = Transform3D(-1, 7.45058e-09, -8.74228e-08, 7.45058e-09, 1, 0, 8.74228e-08, 0, -1, 129.062, -0.0453024, -0.118896)
+use_collision = true
+size = Vector3(1.00042, 11.5554, 129.589)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="CSGBox3D2"]
+transform = Transform3D(1.31134e-07, 1.49012e-08, -1, -8.88178e-16, 1, 1.49012e-08, 1, 0, 1.31134e-07, 64.4717, -0.0679536, -64.5906)
+use_collision = true
+size = Vector3(1.00042, 11.5554, 129.589)
+
+[node name="Player" parent="." instance=ExtResource("4_nhk2f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75836, 0.500001, 13.3079)
+
+[node name="button" parent="." instance=ExtResource("5_mr45h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.07757, 1.41383, 13.6543)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.0445, 2, 0)
+material_override = SubResource("StandardMaterial3D_q5vec")
+use_collision = true
+size = Vector3(3, 3, 8)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="."]
+transform = Transform3D(0.793874, 0.608083, 0, -0.608083, 0.793874, 0, 0, 0, 1, -16.5161, 1.43326, 9.53674e-07)
+material_override = SubResource("StandardMaterial3D_q5vec")
+use_collision = true
+size = Vector3(3, 0.448369, 8)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="."]
+transform = Transform3D(-0.277462, -0.212528, -0.936935, -0.608083, 0.793874, 4.21287e-08, 0.743808, 0.569734, -0.349504, -16.2257, 4.46418, -6.40593)
+material_override = SubResource("StandardMaterial3D_q5vec")
+use_collision = true
+size = Vector3(3, 0.448369, 1.54837)
+
+[node name="creepy_enemy" parent="." instance=ExtResource("6_jtkml")]
+transform = Transform3D(-0.0603517, -0.16509, 0.98443, -0.469277, 0.875133, 0.117991, -0.880986, -0.45485, -0.130289, 6.57342, 17.1323, 10.9237)

@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=3 uid="uid://l6er1lb4bu0s"]
+
+[ext_resource type="PackedScene" uid="uid://djtkiyyut12ei" path="res://Assets/2D/ball.tscn" id="1_73k4s"]
+
+[node name="MainScene" type="Node2D"]
+
+[node name="Weird mesh" type="StaticBody2D" parent="."]
+position = Vector2(225, 99)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Weird mesh"]
+position = Vector2(-52, 68)
+polygon = PackedVector2Array(-2, -1, 177, 213, 346, 340, 553, 249, 681, 98, 940, 133, 855, 342, 558, 483, 148, 428, 74, 277, -32, 192, -28, 59)
+
+[node name="Polygon2D" type="Polygon2D" parent="Weird mesh"]
+polygon = PackedVector2Array(-75, 94, -54, 67, 121, 277, 291, 407, 502, 318, 629, 164, 889, 200, 802, 410, 511, 554, 95, 498, 24, 343, -85, 259, -79, 121)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(614, 69)
+zoom = Vector2(0.385, 0.385)
+
+[node name="Ball" parent="." instance=ExtResource("1_73k4s")]
+position = Vector2(413, -43)
+
+[node name="Ball2" parent="." instance=ExtResource("1_73k4s")]
+position = Vector2(608, -526)
+
+[node name="Ball3" parent="." instance=ExtResource("1_73k4s")]
+position = Vector2(688, -83)

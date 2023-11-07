@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://cr6myssxorsfg"]
+
+[sub_resource type="Gradient" id="Gradient_wq7q3"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_u8ah7"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_xfawg"]
+seamless = true
+color_ramp = SubResource("Gradient_wq7q3")
+noise = SubResource("FastNoiseLite_u8ah7")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4680g"]
+albedo_color = Color(0.729412, 0.603922, 0.729412, 1)
+albedo_texture = SubResource("NoiseTexture2D_xfawg")
+
+[node name="creepy_enemy"]
+
+[node name="Skeleton3D" parent="Armature" index="0"]
+bones/0/scale = Vector3(1, 1, 1)
+bones/5/scale = Vector3(1, 1, 1)
+bones/12/scale = Vector3(1, 1, 1)
+bones/13/scale = Vector3(1, 1, 1)
+
+[node name="Cube" parent="Armature/Skeleton3D" index="0"]
+material_override = SubResource("StandardMaterial3D_4680g")
