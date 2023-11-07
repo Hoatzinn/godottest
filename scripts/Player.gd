@@ -3,13 +3,13 @@ extends CharacterBody3D
 @export var speed = 4
 @export var inairspeed = 6
 @export var jump_velocity = 7
-@export var look_sensitivity =  0.0015
-@export var is_sneaking = false
+@export var look_sensitivity = 0.0015
+var is_sneaking = false
 const MAX_AIR_SNEAK_VEL = 20
 const DASH_GRAVITY = 2000
 const SP_JUMP_STR = 17
 var super_jump = false
-var gravity = 9.81+6
+@export var gravity = 9.81+6
 var velocity_y = 0
 var speedonground = Vector3.ZERO
 @onready var camera:Camera3D = $Camera3D
@@ -31,8 +31,8 @@ func _process(delta):
 		
 		if Input.is_action_pressed("sneak_and_slide"):
 			is_sneaking = true
-			velocity.z = velocity.z * 0.996
-			velocity.x = velocity.x * 0.996
+			velocity.z = velocity.z * 0.995
+			velocity.x = velocity.x * 0.995
 			velocity = velocity.length()*-global_transform.basis.z
 			if Input.is_action_just_pressed("jump"):
 				velocity.z = velocity.z * 1.2
@@ -74,7 +74,7 @@ func _process(delta):
 		else: 
 			speedonground = Vector3.ZERO
 			super_jump= false
-			velocity_y = 20
+			velocity_y = 40
 	velocity.y = velocity_y # update y
 	
 	move_and_slide() # start moving
@@ -105,7 +105,7 @@ func _process(delta):
 	# fullscreen and invisible mouse/cursor
 	if Input.is_action_just_pressed("fullscreen"):
 		
-		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED if Input.mouse_mode == Input.MOUSE_MODE_VISIBLE else Input.MOUSE_MODE_VISIBLE # ??
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED if Input.mouse_mode == Input.MOUSE_MODE_VISIBLE else Input.MOUSE_MODE_VISIBLE
 		
 		if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_WINDOWED:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
