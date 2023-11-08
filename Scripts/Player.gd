@@ -3,17 +3,19 @@ extends CharacterBody3D
 @export var speed = 4
 @export var inairspeed = 6
 @export var jump_velocity = 14
-@export var look_sensitivity = 0.0015
-var is_sneaking = false
+@export var look_sensitivity := 0.0015
+@export var slide_curve:Curve
+var time_sneaking := 0.0
+var is_sneaking := false
 const MAX_AIR_SNEAK_VEL = 20
 @export var gravity = 40
 var velocity_y = 0
-var speedonground = Vector3.ZERO
 @onready var camera:Camera3D = $Camera3D
 @onready var raycast:RayCast3D = $Camera3D/RayCast3D
 @onready var axe:Node3D = $Camera3D/axe
 var axe_def_rot
 var axe_bob = 0
+var inair_vel := 0.0
 
 
 func _ready():
@@ -28,11 +30,13 @@ func _process(delta):
 		
 		if Input.is_action_pressed("sneak_and_slide"):
 			is_sneaking = true
-			velocity.z = velocity.z * 0.995
-			velocity.x = velocity.x * 0.995
+			time_sneaking += delta
+			velocity.z = inair_vel * slide_curve.sample(time_sneaking)# 0.995
+			velocity.x = inair_vel * slide_curve.sample(time_sneaking)#0.995
 			velocity = velocity.length()*-global_transform.basis.z
 		else:
 			is_sneaking = false
+			time_sneaking = 0.0
 			velocity = velocity.lerp((horizontal_velocity.x * global_transform.basis.x + horizontal_velocity.y * global_transform.basis.z)*speed, delta*8) # lerp smoothes movement
 		
 		
@@ -40,14 +44,16 @@ func _process(delta):
 		
 		if Input.is_action_just_pressed("jump"):
 			velocity_y = jump_velocity
+	# NOT ON FLOOR
 	else:
-		is_sneaking=false
-		velocity = velocity.lerp((horizontal_velocity.x * global_transform.basis.x + horizontal_velocity.y * global_transform.basis.z)*inairspeed, delta*5) # lerp smoothes movement
+		inair_vel = Vector2(velocity.x, velocity.z).length()
+		is_sneaking = false
+		time_sneaking = 0.0
+		velocity = velocity.lerp((horizontal_velocity.x * global_transform.basis.x + horizontal_velocity.y * global_transform.basis.z)*inairspeed, delta*5) + velocity*0.01 # lerp smoothes movement
 		
 		if not position.y < -3:
 			velocity_y -= gravity * delta
 		else: 
-			speedonground = Vector3.ZERO
 			velocity_y = 40
 	velocity.y = velocity_y # update y
 	

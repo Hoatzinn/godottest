@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://c8dsuwmkyuf4f" path="res://Assets/Player/UI/crosshairs/000.png" id="2_58s8d"]
 [ext_resource type="Texture2D" uid="uid://cmlcc0c8nwb1y" path="res://Assets/Player/UI/crosshairs/crosshair.png" id="3_hoycl"]
 [ext_resource type="PackedScene" uid="uid://cs0vk8nu1glr6" path="res://Assets/Player/Weapons/Axe/axe.glb" id="4_8vwy3"]
-[ext_resource type="PackedScene" uid="uid://cwegxl213yl2b" path="res://Assets/Player/Weapons/gun1.glb" id="5_bmtgc"]
+[ext_resource type="PackedScene" uid="uid://cwegxl213yl2b" path="res://Assets/Player/Weapons/Gun/gun1.glb" id="5_bmtgc"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_hb565"]
 

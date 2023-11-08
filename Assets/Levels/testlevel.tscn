@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://cphq2nojrela3"]
+[gd_scene load_steps=13 format=3 uid="uid://cphq2nojrela3"]
 
 [ext_resource type="Texture2D" uid="uid://cq1jmw54npj42" path="res://Assets/Objects/placeholder textures/rocky_trail_02_diff_1k.png" id="1_17bxj"]
 [ext_resource type="Texture2D" uid="uid://dfmdrj7jue7yb" path="res://Assets/Objects/placeholder textures/rocky_trail_02_nor_gl_1k.png" id="2_c72hn"]
 [ext_resource type="Texture2D" uid="uid://bosfx8q02y0bp" path="res://Assets/Objects/placeholder textures/rocky_trail_02_rough_1k.png" id="3_0rshv"]
 [ext_resource type="PackedScene" uid="uid://c5x86kdm58xdn" path="res://Assets/Player/Player.tscn" id="4_nhk2f"]
+[ext_resource type="Curve" uid="uid://vchhfd4n6tgx" path="res://Assets/Player/slide_curve.tres" id="5_l00ph"]
 [ext_resource type="PackedScene" uid="uid://dmut347b7asdr" path="res://Assets/Objects/Button/button.tscn" id="5_mr45h"]
 [ext_resource type="PackedScene" uid="uid://crqyj716u6oh8" path="res://Assets/Objects/Creepy enemy/creepy_enemy.glb" id="6_jtkml"]
 
@@ -75,6 +76,7 @@ size = Vector3(1.00042, 11.5554, 129.589)
 
 [node name="Player" parent="." instance=ExtResource("4_nhk2f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75836, 0.500001, 13.3079)
+slide_curve = ExtResource("5_l00ph")
 
 [node name="button" parent="." instance=ExtResource("5_mr45h")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.07757, 1.41383, 13.6543)
