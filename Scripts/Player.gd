@@ -31,7 +31,6 @@ func _process(delta):
 	
 	# jumping
 	if is_on_floor():
-		
 		if Input.is_action_pressed("sneak_and_slide"):
 			is_sneaking = true
 			time_sneaking += delta
@@ -39,6 +38,7 @@ func _process(delta):
 			velocity.x = inair_vel * slide_curve.sample(time_sneaking)#0.995
 			velocity = velocity.length()*-global_transform.basis.z
 		else:
+			inair_vel = 0
 			is_sneaking = false
 			time_sneaking = 0.0
 			velocity = velocity.lerp((horizontal_velocity.x * global_transform.basis.x + horizontal_velocity.y * global_transform.basis.z)*speed, delta*5) # lerp smoothes movement
