@@ -1,10 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://c5x86kdm58xdn"]
+[gd_scene load_steps=7 format=3 uid="uid://c5x86kdm58xdn"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_cdx6h"]
-[ext_resource type="Texture2D" uid="uid://c8dsuwmkyuf4f" path="res://Assets/Player/UI/crosshairs/000.png" id="2_58s8d"]
 [ext_resource type="Texture2D" uid="uid://cmlcc0c8nwb1y" path="res://Assets/Player/UI/crosshairs/crosshair.png" id="3_hoycl"]
 [ext_resource type="PackedScene" uid="uid://cs0vk8nu1glr6" path="res://Assets/Player/Weapons/Axe/axe.glb" id="4_8vwy3"]
-[ext_resource type="PackedScene" uid="uid://cwegxl213yl2b" path="res://Assets/Player/Weapons/Gun/gun1.glb" id="5_bmtgc"]
+[ext_resource type="PackedScene" uid="uid://cnk1b22l4nfbc" path="res://Assets/Player/Weapons/Glock/glock.tscn" id="4_mbfih"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_hb565"]
 
@@ -16,6 +15,7 @@ script = ExtResource("1_cdx6h")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.53706, 0)
+current = true
 fov = 110.3
 
 [node name="RayCast3D" type="RayCast3D" parent="Camera3D"]
@@ -36,29 +36,19 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextureRect" type="TextureRect" parent="Camera3D/Control"]
-visible = false
-layout_mode = 0
-offset_left = -31.0
-offset_top = -31.0
-offset_right = 33.0
-offset_bottom = 33.0
-pivot_offset = Vector2(1310, 56)
-texture = ExtResource("2_58s8d")
-expand_mode = 1
-stretch_mode = 1
-
 [node name="Crosshair" type="Sprite2D" parent="Camera3D/Control"]
 position = Vector2(1, 1)
 texture = ExtResource("3_hoycl")
 hframes = 5
 
-[node name="axe" parent="Camera3D" instance=ExtResource("4_8vwy3")]
-transform = Transform3D(-9.48823e-09, -0.217065, 0, 0.125371, -5.48014e-09, -0.177199, 0.177199, -7.74562e-09, 0.125371, 0.519933, -0.515013, -0.0756542)
+[node name="Weapons" type="Node3D" parent="Camera3D"]
 
-[node name="gun" parent="Camera3D" instance=ExtResource("5_bmtgc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.495, -0.65, -0.355)
+[node name="Axe" parent="Camera3D/Weapons" instance=ExtResource("4_8vwy3")]
+transform = Transform3D(-9.48823e-09, -0.217065, 0, 0.125371, -5.48014e-09, -0.177199, 0.177199, -7.74562e-09, 0.125371, 0.519933, -0.515013, -0.0756542)
 visible = false
+
+[node name="glock" parent="Camera3D/Weapons" instance=ExtResource("4_mbfih")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.255, -0.255, -0.395)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -67,3 +57,5 @@ mesh = SubResource("CapsuleMesh_hb565")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("ConvexPolygonShape3D_nkx1b")
+
+[connection signal="shoot" from="." to="Camera3D/Weapons/glock" method="_on_player_shoot"]

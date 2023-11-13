@@ -12,10 +12,14 @@ const MAX_AIR_SNEAK_VEL = 20
 var velocity_y = 0
 @onready var camera:Camera3D = $Camera3D
 @onready var raycast:RayCast3D = $Camera3D/RayCast3D
-@onready var axe:Node3D = $Camera3D/axe
+@onready var axe:Node3D = $Camera3D/Weapons/Axe
 var axe_def_rot
 var axe_bob = 0
 var inair_vel := 0.0
+
+signal shoot
+
+#TODO camera rotation
 
 
 func _ready():
@@ -37,7 +41,7 @@ func _process(delta):
 		else:
 			is_sneaking = false
 			time_sneaking = 0.0
-			velocity = velocity.lerp((horizontal_velocity.x * global_transform.basis.x + horizontal_velocity.y * global_transform.basis.z)*speed, delta*8) # lerp smoothes movement
+			velocity = velocity.lerp((horizontal_velocity.x * global_transform.basis.x + horizontal_velocity.y * global_transform.basis.z)*speed, delta*5) # lerp smoothes movement
 		
 		
 		velocity_y = 0
@@ -49,7 +53,7 @@ func _process(delta):
 		inair_vel = Vector2(velocity.x, velocity.z).length()
 		is_sneaking = false
 		time_sneaking = 0.0
-		velocity = velocity.lerp((horizontal_velocity.x * global_transform.basis.x + horizontal_velocity.y * global_transform.basis.z)*inairspeed, delta*5) + velocity*0.01 # lerp smoothes movement
+		velocity = velocity.lerp((horizontal_velocity.x * global_transform.basis.x + horizontal_velocity.y * global_transform.basis.z)*inairspeed, delta*8) # lerp smoothes movement
 		
 		if not position.y < -3:
 			velocity_y -= gravity * delta
@@ -75,9 +79,12 @@ func _process(delta):
 					raycast.get_collider().button_activated = false
 				else:
 					raycast.get_collider().button_activated = true
+		else:
+			emit_signal("shoot")
 	elif Input.is_action_pressed("Mouse_Action"):
-		axe_bob += delta*20
-		axe.rotate(Vector3(sin(axe_bob), 0 , 0).normalized(), -0.1)
+		'''axe_bob += delta*20
+		axe.rotate(Vector3(sin(axe_bob), 0 , 0).normalized(), -0.1)'''
+		pass
 	else:
 		axe.rotation = axe_def_rot
 		axe_bob = 0
@@ -99,4 +106,3 @@ func _input(event):
 		rotate_y(-event.relative.x*look_sensitivity) # rotate body
 		camera.rotate_x(-event.relative.y*look_sensitivity) # rotate camera up and down (no headshaking)
 		camera.rotation.x = clamp(camera.rotation.x, -PI/2, PI/2) # thou may not moveth upsidedown
-			
