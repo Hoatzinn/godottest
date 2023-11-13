@@ -13,4 +13,4 @@ func _process(delta):
 
 
 func _on_player_shoot():
-	animationplayer.play("Shoot")
+	animationplayer.play("shoot")
