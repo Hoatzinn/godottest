@@ -13,4 +13,10 @@ func _process(delta):
 
 
 func _on_player_shoot():
+	print("E")
 	animationplayer.play("shoot")
+
+
+func _on_player_not_shoot():
+	print("not E")
+	animationplayer.play("RESET")

@@ -7,6 +7,7 @@ extends CharacterBody3D
 @export var slide_curve:Curve
 var time_sneaking := 0.0
 var is_sneaking := false
+var is_shooting := false
 const MAX_AIR_SNEAK_VEL = 20
 @export var gravity = 40
 var velocity_y = 0
@@ -18,6 +19,7 @@ var axe_bob = 0
 var inair_vel := 0.0
 
 signal shoot
+signal not_shoot
 
 #TODO camera rotation
 
@@ -33,13 +35,14 @@ func _process(delta):
 	if is_on_floor():
 		if Input.is_action_pressed("sneak_and_slide"):
 			is_sneaking = true
+			#$AnimationPlayer.play("sneak")
 			time_sneaking += delta
 			velocity.z = inair_vel * slide_curve.sample(time_sneaking)# 0.995
 			velocity.x = inair_vel * slide_curve.sample(time_sneaking)#0.995
 			velocity = velocity.length()*-global_transform.basis.z
 		else:
 			inair_vel = 0
-			is_sneaking = false
+			is_sneaking = false 
 			time_sneaking = 0.0
 			velocity = velocity.lerp((horizontal_velocity.x * global_transform.basis.x + horizontal_velocity.y * global_transform.basis.z)*speed, delta*5) # lerp smoothes movement
 		
@@ -69,7 +72,7 @@ func _process(delta):
 		camera.position.y += 4 * delta
 	
 	# button code
-	if Input.is_action_just_pressed("Mouse_Action"):
+	if Input.is_action_pressed("Mouse_Action"):
 		
 		if raycast.get_collider() != null:
 			var regex = RegEx.new()
@@ -81,13 +84,19 @@ func _process(delta):
 					raycast.get_collider().button_activated = true
 		else:
 			emit_signal("shoot")
-	elif Input.is_action_pressed("Mouse_Action"):
-		'''axe_bob += delta*20
-		axe.rotate(Vector3(sin(axe_bob), 0 , 0).normalized(), -0.1)'''
+			is_shooting = true
+	else:
+		if is_shooting == true:
+			emit_signal("not_shoot")
+			is_shooting = false
+		
+	'''elif Input.is_action_pressed("Mouse_Action"):
+		axe_bob += delta*20
+		axe.rotate(Vector3(sin(axe_bob), 0 , 0).normalized(), -0.1)
 		pass
 	else:
 		axe.rotation = axe_def_rot
-		axe_bob = 0
+		axe_bob = 0'''
 	
 	# fullscreen and invisible mouse/cursor
 	if Input.is_action_just_pressed("fullscreen"):
